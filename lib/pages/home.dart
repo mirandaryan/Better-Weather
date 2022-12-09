@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+enum Menu { location, add_widget }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+  const MyHomePage({super.key});
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -12,14 +13,16 @@ class MyHomePage extends StatefulWidget {
   // used by the build method of the State. Fields in a Widget subclass are
   // always marked "final".
 
-  final String title;
+
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  MyHomePageState createState() => MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+class MyHomePageState extends State<MyHomePage> {
+  final String title = 'Better Weather';
+  String route = '';
+
 
   void _incrementCounter() {
     setState(() {
@@ -28,7 +31,7 @@ class _MyHomePageState extends State<MyHomePage> {
       // so that the display can reflect the updated values. If we changed
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
-      _counter++;
+
     });
   }
 
@@ -36,57 +39,32 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton( //menu icon button at start left of appbar
-          onPressed: (){
-            //code to execute when this button is pressed
-          },
-          icon: const Icon(Icons.menu),
-        ),
-        title: Text(widget.title),
-        actions: [
-          IconButton(
-              icon: const Icon(Icons.account_box_rounded),
-              onPressed: (){
-                //code to execute when this button is pressed
-              }
-          ),
+        actions: <Widget>[
+          // This button presents popup menu items.
+          PopupMenuButton<Menu>(
+            // Callback that sets the selected popup menu item.
+              icon: const Icon(Icons.menu),
+              onSelected: (Menu item) {
+                route = item.name;
+                Navigator.pushNamed(context, '/$route');
+              },
+              itemBuilder: (BuildContext context) => <PopupMenuEntry<Menu>>[
+                const PopupMenuItem<Menu>(
+                  value: Menu.location,
+                  child: Text('Location'),
+                ),
+                const PopupMenuItem<Menu>(
+                  value: Menu.add_widget,
+                  child: Text('Add Widget'),
+                ),
+              ]),
         ],
+        title: const Text("Better Weather"),
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
+      body: const Center(
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
+//https://api.flutter.dev/flutter/material/PopupMenuButton-class.html
+
