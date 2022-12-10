@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:better_weather/weather_card.dart';
+import 'package:better_weather/widget_card.dart';
 enum Menu { location, add_widget }
 
 class MyHomePage extends StatefulWidget {
@@ -22,6 +24,7 @@ class MyHomePage extends StatefulWidget {
 class MyHomePageState extends State<MyHomePage> {
   final String title = 'Better Weather';
   String route = '';
+  //user widgets for now
 
 
   void _incrementCounter() {
@@ -61,8 +64,18 @@ class MyHomePageState extends State<MyHomePage> {
         ],
         title: const Text("Better Weather"),
       ),
-      body: const Center(
+      body: Container(
+        child: Column(
+            children: const <Widget>[
+              WeatherCard(),
+              WidgetCard(),
+              WidgetCard(),
+              WidgetCard(),
+
+            ],
       ),
+        ),
+
     );
   }
 }
