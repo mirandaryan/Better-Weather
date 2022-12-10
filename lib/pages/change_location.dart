@@ -8,15 +8,60 @@ class ChangeLocation extends StatefulWidget {
   State<ChangeLocation> createState() => _ChangeLocationState();
 }
 
+
 class _ChangeLocationState extends State<ChangeLocation> {
+  final List<String> locations = <String>['Chicago', 'New York', 'Los Angeles'];
+  final int listLength = 3;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Change Location"),
       ),
-      body: const Center(
-      ),
+      body: ListView.builder(
+          itemCount: locations.length,
+          itemBuilder: (BuildContext ctx, index) {
+            return ListTile(
+            onTap: () {
+              print("tapped");
+              showDialog<void>(
+                context: context,
+                barrierDismissible: false, // user must tap button!
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: const Text('Change Location'),
+                    content: SingleChildScrollView(
+                      child: ListBody(
+                        children: <Widget>[
+                          Text('Would you like to change you location to ${locations.elementAt(index)}?'),
+                        ],
+                      ),
+                    ),
+                    actions: <Widget>[
+                      TextButton(
+                        child: const Text('Yes'),
+                        onPressed: () {
+                          Navigator.popUntil(context, ModalRoute.withName('/'));
+                        },
+                      ),
+                    ],
+                  );
+                },
+              );
+           },
+
+            //add location to userdata
+              //return to home and reload
+            title: Text(locations.elementAt(index))
+            );
+            },
+
+    ),
     );
   }
+
+
 }
+//https://api.flutter.dev/flutter/widgets/ListView-class.html
+//https://api.flutter.dev/flutter/material/AlertDialog-class.html

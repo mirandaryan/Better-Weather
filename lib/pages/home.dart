@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:better_weather/weather_card.dart';
-import 'package:better_weather/widget_card.dart';
+import 'package:better_weather/pages/grid_builder.dart';
 enum Menu { location, add_widget }
 
 class MyHomePage extends StatefulWidget {
@@ -27,13 +27,9 @@ class MyHomePageState extends State<MyHomePage> {
   //user widgets for now
 
 
-  void _incrementCounter() {
+  void _itemDroppedOnCustomerCart() {
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
+      //delete widget from user data and reload
 
     });
   }
@@ -42,42 +38,57 @@ class MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: <Widget>[
-          // This button presents popup menu items.
-          PopupMenuButton<Menu>(
-            // Callback that sets the selected popup menu item.
-              icon: const Icon(Icons.menu),
-              onSelected: (Menu item) {
-                route = item.name;
-                Navigator.pushNamed(context, '/$route');
-              },
-              itemBuilder: (BuildContext context) => <PopupMenuEntry<Menu>>[
-                const PopupMenuItem<Menu>(
-                  value: Menu.location,
-                  child: Text('Location'),
-                ),
-                const PopupMenuItem<Menu>(
-                  value: Menu.add_widget,
-                  child: Text('Add Widget'),
-                ),
-              ]),
-        ],
         title: const Text("Better Weather"),
       ),
       body: Container(
+        padding: const EdgeInsets.all(16.0),
         child: Column(
-            children: const <Widget>[
-              WeatherCard(),
-              WidgetCard(),
-              WidgetCard(),
-              WidgetCard(),
-
-            ],
-      ),
+          children: [
+            Container(
+              child:const WeatherCard(),
+            ),
+            const Flexible(
+              child: GridBuilder(),
+            )
+          ],
         ),
+
+        ),
+      drawer: Drawer(
+      // Add a ListView to the drawer. This ensures the user can scroll
+      // through the options in the drawer if there isn't enough vertical
+      // space to fit everything.
+      child: ListView(
+      // Important: Remove any padding from the ListView.
+      padding: EdgeInsets.zero,
+      children: [
+        ListTile(
+          title: const Text('Change Location'),
+          onTap: () {
+            // Update the state of the app
+            // ...
+            // Then close the drawer
+            Navigator.pushNamed(context, '/location');
+          },
+        ),
+        ListTile(
+          title: const Text('Add Widget'),
+          onTap: () {
+            // Update the state of the app
+            // ...
+            // Then close the drawer
+            Navigator.pushNamed(context, '/add_widget');
+          },
+        ),
+      ],
+    ),
+      ),
 
     );
   }
+
+
 }
 //https://api.flutter.dev/flutter/material/PopupMenuButton-class.html
-
+//https://docs.flutter.dev/cookbook/design/drawer
+//https://docs.flutter.dev/cookbook/effects/drag-a-widget

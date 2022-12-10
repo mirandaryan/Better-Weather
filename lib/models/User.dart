@@ -4,6 +4,7 @@ class User {
 
   final String uid;
 
+
   User({ required this.uid });
 
 }
@@ -12,8 +13,8 @@ class UserData {
 
   final String uid;
   final String location;
-  final List<Widget> widgets;
+  final List<String> widgetList;
 
-  UserData({ required this.uid, required this.location, required this.widgets });
+  UserData({ required this.uid, required this.location, required this.widgetList });
 
 }
