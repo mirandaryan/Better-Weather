@@ -1,74 +1,94 @@
+import 'package:better_weather/services/auth.dart';
+import 'package:better_weather/shared/constants.dart';
 import 'package:flutter/material.dart';
 
-class SignUp extends StatefulWidget {
-  const SignUp({Key? key}) : super(key: key);
+class Register extends StatefulWidget {
+
+  final Function toggleView;
+  Register({ required this.toggleView });
 
   @override
-  State<SignUp> createState() => _SignUpState();
+  _RegisterState createState() => _RegisterState();
 }
 
-class _SignUpState extends State<SignUp> {
+class _RegisterState extends State<Register> {
+
+  final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
+  String error = '';
+  bool loading = false;
+
+  // text field state
+  String email = '';
+  String password = '';
 
   @override
   Widget build(BuildContext context) {
-    // Build a Form widget using the _formKey created above.
-    return Scaffold(
-      appBar: AppBar(title: const Text('Sign Up')),
-     body: Padding(
-       padding: const EdgeInsets.all(16.0),
-       child: Form(
-         key: _formKey,
-         child: Column(
-           crossAxisAlignment: CrossAxisAlignment.start,
-           children: [
-             TextFormField(
-               // The validator receives the text that the user has entered.
-               decoration: const InputDecoration(
-                 border: OutlineInputBorder(),
-                 hintText: 'Username',
-               ),
-               validator: (value) {
-                 if (value == null || value.isEmpty) {
-                   return 'Please enter some text';
-                 }
-                 return null;
-               },
-             ),
-             TextFormField(
-               // The validator receives the text that the user has entered.
-               decoration: const InputDecoration(
-                 border: OutlineInputBorder(),
-                 hintText: 'Password',
-               ),
-               validator: (value) {
-                 if (value == null || value.isEmpty) {
-                   return 'Please enter some text';
-                 }
-                 return null;
-               },
-             ),
-             ElevatedButton(
-               onPressed: () {
-                 // Validate returns true if the form is valid, or false otherwise.
-                 if (_formKey.currentState!.validate()) {
-                   // If the form is valid, display a snackbar. In the real world,
-                   // you'd often call a server or save the information in a database.
-                   ScaffoldMessenger.of(context).showSnackBar(
-                     const SnackBar(content: Text('Processing Data')),
-                   );
-                 }
-               },
-               child: const Text('Submit'),
-             ),
-           ],
-         ),
-       ),
-
-     ),
+    return loading ? Loading() : Scaffold(
+      backgroundColor: Colors.brown[100],
+      appBar: AppBar(
+        backgroundColor: Colors.brown[400],
+        elevation: 0.0,
+        title: Text('Sign up to Brew Crew'),
+        actions: <Widget>[
+          TextButton.icon(
+            icon: Icon(Icons.person),
+            label: Text('Sign In'),
+            onPressed: () => widget.toggleView(),
+          ),
+        ],
+      ),
+      body: Container(
+        padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: <Widget>[
+              SizedBox(height: 20.0),
+              TextFormField(
+                decoration: textInputDecoration.copyWith(hintText: 'email'),
+                validator: (val) => val.isEmpty ? 'Enter an email' : null,
+                onChanged: (val) {
+                  setState(() => email = val);
+                },
+              ),
+              SizedBox(height: 20.0),
+              TextFormField(
+                decoration: textInputDecoration.copyWith(hintText: 'password'),
+                obscureText: true,
+                validator: (val) => val.length < 6 ? 'Enter a password 6+ chars long' : null,
+                onChanged: (val) {
+                  setState(() => password = val);
+                },
+              ),
+              SizedBox(height: 20.0),
+              ElevatedButton(
+                  child: Text(
+                    'Register',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  onPressed: () async {
+                    if(_formKey.currentState.validate()){
+                      setState(() => loading = true);
+                      dynamic result = await _auth.registerWithEmailAndPassword(email, password);
+                      if(result == null) {
+                        setState(() {
+                          loading = false;
+                          error = 'Please supply a valid email';
+                        });
+                      }
+                    }
+                  }
+              ),
+              SizedBox(height: 12.0),
+              Text(
+                error,
+                style: TextStyle(color: Colors.red, fontSize: 14.0),
+              )
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
-
-//https://www.tutorialkart.com/flutter/flutter-login-screen/
-

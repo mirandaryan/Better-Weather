@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class ChangeLocation extends StatefulWidget {
   const ChangeLocation({Key? key}) : super(key: key);
+  //list of all possible locations, add to database onPressed
 
   @override
   State<ChangeLocation> createState() => _ChangeLocationState();
