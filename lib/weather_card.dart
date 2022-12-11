@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 
 class WeatherCard extends StatefulWidget {
-  const WeatherCard({Key? key}) : super(key: key);
+  const WeatherCard({Key key}) : super(key: key);
 
   @override
   State<WeatherCard> createState() => _WeatherCardState();

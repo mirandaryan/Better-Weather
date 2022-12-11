@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class WidgetCard extends StatefulWidget {
-  const WidgetCard({Key? key}) : super(key: key);
+  const WidgetCard({Key key}) : super(key: key);
 
 
   @override

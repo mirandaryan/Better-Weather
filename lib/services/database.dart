@@ -17,9 +17,10 @@ class DatabaseService {
     //translating user input from city search bar into lat and lon coords
     final geocodingQueryParameters =
     {
-      'q': city
+      'q': city,
+      'appid' : 'cf043d4b558f03c1e5d58cc16eb82150'
     };
-    final geocodingUri = Uri.https('api.openweathermap.org', '/data/2.5/weather', geocodingQueryParameters);
+    final geocodingUri = Uri.https('api.openweathermap.org', '/geo/1.0/reverse', geocodingQueryParameters);
     final geocodingResponse = await http.get(geocodingUri);
     print(geocodingResponse.body);
     final geocodingJson = jsonDecode(geocodingResponse.body);
@@ -27,8 +28,8 @@ class DatabaseService {
     //getting weather data from lat and lon coords
     final weatherQueryParameters =
     {
-      'lat': geocodingJson.fromJson['lat'],
-      'lon': geocodingJson.fromJson['lon'],
+      'lat': geocodingJson['lat'],
+      'lon': geocodingJson['lon'],
       'appid': 'cf043d4b558f03c1e5d58cc16eb82150',
       'units': 'imperial'
     };

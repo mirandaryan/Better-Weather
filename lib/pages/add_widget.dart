@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AddWidget extends StatefulWidget {
-  const AddWidget({Key? key}) : super(key: key);
+  const AddWidget({Key key}) : super(key: key);
   //list of all possible locations, add to database onPressed
 
   @override

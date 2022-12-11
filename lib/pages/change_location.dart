@@ -1,9 +1,9 @@
 import 'package:better_weather/services/database.dart';
 import 'package:flutter/material.dart';
-import 'package:better_weather/models/WeatherData.dart';
+//import 'package:better_weather/models/WeatherData.dart';
 
 class ChangeLocation extends StatefulWidget {
-  const ChangeLocation({Key? key}) : super(key: key);
+  const ChangeLocation({Key key}) : super(key: key);
   //list of all possible locations, add to database onPressed
 
   @override
@@ -64,8 +64,7 @@ class _ChangeLocationState extends State<ChangeLocation> {
 //     ),
 //     );
 //   }
-
- late DataResponse _response;
+ var _response;
 
   @override
   Widget build(BuildContext context) {

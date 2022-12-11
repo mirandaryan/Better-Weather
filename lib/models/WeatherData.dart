@@ -4,8 +4,8 @@ class Coord
   final double lat;
 
   Coord(
-  { required this.lon,
-    required this.lat});
+  {  this.lon,
+     this.lat});
 
   factory Coord.fromJson(Map<String, dynamic> json)
   {
@@ -21,8 +21,8 @@ class Weather
   final String icon;
 
   Weather(
-  { required this.main,
-    required this.icon});
+  { this.main,
+    this.icon});
 
   factory Weather.fromJson(Map<String, dynamic> json)
   {
@@ -42,12 +42,12 @@ class Main
   final int humidity;
 
   Main(
-      { required this.temp,
-        required this.feelsLike,
-        required this.tempMin,
-        required this.tempMax,
-        required this.pressure,
-        required this.humidity});
+      { this.temp,
+        this.feelsLike,
+        this.tempMin,
+        this.tempMax,
+        this.pressure,
+        this.humidity});
 
   factory Main.fromJson(Map<String, dynamic> json)
   {
@@ -66,7 +66,7 @@ class Wind
   final String speed;
 
   Wind(
-      {required this.speed});
+      {this.speed});
 
   factory Wind.fromJson(Map<String, dynamic> json)
   {
@@ -80,7 +80,7 @@ class Rain
   final double rainfall;
 
   Rain(
-      {required this.rainfall});
+      {this.rainfall});
 
   factory Rain.fromJson(Map<String, dynamic> json)
   {
@@ -94,7 +94,7 @@ class Clouds
   final double all;
 
   Clouds(
-      {required this.all});
+      {this.all});
 
   factory Clouds.fromJson(Map<String, dynamic> json)
   {
@@ -119,13 +119,13 @@ class DataResponse
   }
 
   DataResponse(
-      { required this.name,
-        required this.coord,
-        required this.weather,
-        required this.main,
-        required this.wind,
-        required this.rain,
-        required this.clouds});
+      { this.name,
+        this.coord,
+        this.weather,
+        this.main,
+        this.wind,
+        this.rain,
+        this.clouds});
 
   factory DataResponse.fromJson(Map<String, dynamic> json)
   {
