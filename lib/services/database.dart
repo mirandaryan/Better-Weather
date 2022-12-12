@@ -18,18 +18,20 @@ class DatabaseService {
     final geocodingQueryParameters =
     {
       'q': city,
+      'limit': '5',
       'appid' : 'cf043d4b558f03c1e5d58cc16eb82150'
     };
-    final geocodingUri = Uri.https('api.openweathermap.org', '/geo/1.0/reverse', geocodingQueryParameters);
+    final geocodingUri = Uri.https('api.openweathermap.org', '/geo/1.0/direct', geocodingQueryParameters);
     final geocodingResponse = await http.get(geocodingUri);
     print(geocodingResponse.body);
-    final geocodingJson = jsonDecode(geocodingResponse.body);
+    //final geocodingJson = jsonDecode(geocodingResponse.body);
+    //Lat test = Lat.fromJson(geocodingJson);
 
     //getting weather data from lat and lon coords
     final weatherQueryParameters =
     {
-      'lat': geocodingJson['lat'],
-      'lon': geocodingJson['lon'],
+      'lat': '40.71',
+      'lon': '-74.00',
       'appid': 'cf043d4b558f03c1e5d58cc16eb82150',
       'units': 'imperial'
     };

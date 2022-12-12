@@ -1,10 +1,9 @@
-import 'package:better_weather/models/WeatherData.dart';
 import 'package:flutter/material.dart';
 
 class GridBuilder extends StatefulWidget {
 
 
-  const GridBuilder({Key key}): super(key: key);
+  const GridBuilder({Key key});
   @override
   GridBuilderState createState() => GridBuilderState();
 }
@@ -13,7 +12,8 @@ class GridBuilderState extends State<GridBuilder> {
   //final List<Map> myProducts =
   //List.generate(100000, (index) => {"id": index, "name": "Product $index"})
      // .toList();
-  final List<String> widgetList = ["rainfall", "windspeed"];
+  final List<String> widgetList = ["Feels Like", "Temperature Minimum", "Temperature Maximum", "Rain Amount", "Clouds", "Humidity"];
+  final List<String> widgetDataList = ["35F", "28F", "41F", "2.8in", "90%", "34%"];
 
   @override
   Widget build(BuildContext context) {
@@ -36,8 +36,7 @@ class GridBuilderState extends State<GridBuilder> {
                     content: SingleChildScrollView(
                       child: ListBody(
                         children: <Widget>[
-                          Text(
-                            'Would you like to delete the ${widgetList.elementAt(index)} widget?',
+                          Text('Would you like to delete the ${widgetList.elementAt(index)} widget?',
                             style: TextStyle(color: Colors.red[400]),
                           ),
                         ],
@@ -66,23 +65,19 @@ class GridBuilderState extends State<GridBuilder> {
                       offset: const Offset(0,1),
                     ),
                   ],
-                // border: Border.all(
-                //   color: Colors.blue[200]
-                // ),
-                borderRadius: const BorderRadius.all(Radius.circular(20))
+                  // border: Border.all(
+                  //   color: Colors.blue[200]
+                  // ),
+                  borderRadius: const BorderRadius.all(Radius.circular(20))
               ),
-
-              //margin: const EdgeInsets.all(10.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   ListTile(
-                    title: const Center(
-                      child: Text(
-                        '80',
-                        style: TextStyle(
-                          fontSize: 40.0,
-                        ),
+                    title: Center(child: Text(widgetDataList.elementAt(index),
+                      style: const TextStyle(
+                        fontSize: 40.0,
+                      ),
                       ),
                     ),
                     subtitle: Center(
@@ -93,7 +88,6 @@ class GridBuilderState extends State<GridBuilder> {
 
               ),
           ),
-
 
           );
         });
