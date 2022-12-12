@@ -1,9 +1,10 @@
+import 'package:better_weather/models/WeatherData.dart';
 import 'package:flutter/material.dart';
 
 class GridBuilder extends StatefulWidget {
 
 
-  const GridBuilder({Key key});
+  const GridBuilder({Key key}): super(key: key);
   @override
   GridBuilderState createState() => GridBuilderState();
 }
@@ -35,7 +36,10 @@ class GridBuilderState extends State<GridBuilder> {
                     content: SingleChildScrollView(
                       child: ListBody(
                         children: <Widget>[
-                          Text('Would you like to delete the ${widgetList.elementAt(index)} widget?'),
+                          Text(
+                            'Would you like to delete the ${widgetList.elementAt(index)} widget?',
+                            style: TextStyle(color: Colors.red[400]),
+                          ),
                         ],
                       ),
                     ),
@@ -52,15 +56,38 @@ class GridBuilderState extends State<GridBuilder> {
               );
             },
             child: Container(
-              margin: const EdgeInsets.all(10.0),
-              color: Colors.blue[200],
-              width: 20.0,
-              height: 30.0,
+              decoration: BoxDecoration(
+                  color:Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.3),
+                      spreadRadius: 1,
+                      blurRadius: 2,
+                      offset: const Offset(0,1),
+                    ),
+                  ],
+                // border: Border.all(
+                //   color: Colors.blue[200]
+                // ),
+                borderRadius: const BorderRadius.all(Radius.circular(20))
+              ),
+
+              //margin: const EdgeInsets.all(10.0),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   ListTile(
-                    title: Text('80'),
-                    subtitle: Text(widgetList.elementAt(index)),
+                    title: const Center(
+                      child: Text(
+                        '80',
+                        style: TextStyle(
+                          fontSize: 40.0,
+                        ),
+                      ),
+                    ),
+                    subtitle: Center(
+                      child: Text(widgetList.elementAt(index)),
+                    ),
                   ),
                 ],
 

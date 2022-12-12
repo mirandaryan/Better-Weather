@@ -4,7 +4,7 @@ import 'package:better_weather/pages/grid_builder.dart';
 enum Menu { location, add_widget }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key key});
+  const MyHomePage({Key key}): super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -41,11 +41,11 @@ class MyHomePageState extends State<MyHomePage> {
         title: const Text("Better Weather"),
       ),
       body: Container(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(20.0),
         child: Column(
           children: [
             Container(
-              child:const WeatherCard(),
+              child: const WeatherCard(),
             ),
             const Flexible(
               child: GridBuilder(),

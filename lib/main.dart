@@ -11,7 +11,7 @@ void main() => runApp(MaterialApp(
       //'/sign_up': (context) => const SignUp(),
       '/': (context) => const MyHomePage(),
       '/location': (context) => const ChangeLocation(),
-      '/add_widget': (context) => const AddWidget(),
+      '/add_widget': (context) => AddWidget(key: null,),
     }
 ));
 
