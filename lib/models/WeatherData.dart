@@ -1,3 +1,31 @@
+class Lat
+{
+  final double lat;
+
+  Lat(
+      {this.lat});
+
+  factory Lat.fromJson(Map<String, dynamic> json)
+  {
+    return Lat(
+        lat: json["lat"]);
+  }
+}
+
+class Lon
+{
+  final double lon;
+
+  Lon(
+      {this.lon});
+
+  factory Lon.fromJson(Map<String, dynamic> json)
+  {
+    return Lon(
+        lon: json["lon"]);
+  }
+}
+
 class Coord
 {
   final double lon;

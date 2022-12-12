@@ -10,7 +10,7 @@ class AddWidget extends StatefulWidget {
 
 
 class _AddWidgetState extends State<AddWidget> {
-  final List<String> widgets = <String>['rainfall', 'windspeed', 'pressure'];
+  final List<String> widgets = <String>['Pressure', 'Humidity', 'Visibility'];
   final int listLength = 3;
 
   @override

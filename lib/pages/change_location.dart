@@ -1,3 +1,4 @@
+import 'package:better_weather/models/WeatherData.dart';
 import 'package:better_weather/services/database.dart';
 import 'package:flutter/material.dart';
 //import 'package:better_weather/models/WeatherData.dart';
@@ -64,7 +65,7 @@ class _ChangeLocationState extends State<ChangeLocation> {
 //     ),
 //     );
 //   }
- var _response;
+ DataResponse _response;
 
   @override
   Widget build(BuildContext context) {

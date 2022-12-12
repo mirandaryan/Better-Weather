@@ -18,9 +18,9 @@ class _WeatherCardState extends State<WeatherCard> {
           mainAxisSize: MainAxisSize.min,
           children: const <Widget>[
             ListTile(
-              leading: Icon(Icons.sunny),
-              title: Text('80'),
-              subtitle: Text('sunny'),
+              leading: Icon(Icons.cloudy_snowing),
+              title: Text('37F'),
+              subtitle: Text('New York City - Rain'),
             ),
           ],
         ),

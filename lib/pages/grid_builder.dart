@@ -12,7 +12,8 @@ class GridBuilderState extends State<GridBuilder> {
   //final List<Map> myProducts =
   //List.generate(100000, (index) => {"id": index, "name": "Product $index"})
      // .toList();
-  final List<String> widgetList = ["rainfall", "windspeed"];
+  final List<String> widgetList = ["Feels Like", "Temperature Minimum", "Temperature Maximum", "Rain Amount", "Clouds", "Humidity"];
+  final List<String> widgetDataList = ["35F", "28F", "41F", "2.8in", "90%", "34%"];
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +60,7 @@ class GridBuilderState extends State<GridBuilder> {
               child: Column(
                 children: <Widget>[
                   ListTile(
-                    title: Text('80'),
+                    title: Text(widgetDataList.elementAt(index)),
                     subtitle: Text(widgetList.elementAt(index)),
                   ),
                 ],
