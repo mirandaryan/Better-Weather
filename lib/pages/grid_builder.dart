@@ -76,7 +76,7 @@ class GridBuilderState extends State<GridBuilder> {
                   ListTile(
                     title: Center(child: Text(widgetDataList.elementAt(index),
                       style: const TextStyle(
-                        fontSize: 40.0,
+                        fontSize: 30.0,
                       ),
                       ),
                     ),

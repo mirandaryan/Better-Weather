@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:better_weather/pages/log_in.dart';
-import 'package:better_weather/pages/sign_up.dart';
 import 'package:better_weather/pages/home.dart';
 import 'package:better_weather/pages/change_location.dart';
 import 'package:better_weather/pages/add_widget.dart';
